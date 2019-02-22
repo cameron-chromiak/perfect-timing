@@ -52,8 +52,10 @@ app.use(passport.session());
 
 //load routes
 const users = require('./routes/users')
+const scheduele = require('./routes/scheduele')
 //use routes
 app.use('/users', users)
+app.use('/scheduele', scheduele)
 
 //Passport
 require('./config/passport')(passport)

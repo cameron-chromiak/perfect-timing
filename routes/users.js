@@ -21,14 +21,9 @@ router.get('/register', (req, res) => {
 //login
 router.post('/login', (req, res, next)=>{
   passport.authenticate('local', {
-    successRedirect: '/users/browse',
+    successRedirect: '/scheduele/',
     failureRedirect: '/users/login'
   })(req, res, next)
-})
-
-router.get('/browse', (req, res, next)=>{
-  console.log('browse')
-  res.render('browse', {user: req.user})
 })
 
 //register form post
@@ -50,7 +45,7 @@ router.post('/register', (req, res) => {
       })
       .then(user => {
         if (user) {
-          console.log('xxx');
+          // console.log('xxx');
           errors.push({text: "User taken"})
           res.render('users/register', {errors: errors})
         } else {

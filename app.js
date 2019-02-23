@@ -13,11 +13,9 @@ mongoose.connect('mongodb://localhost/scheduele', {
 }).then(() => console.log('Mongo connected!'))
 .catch(err => console.log(err))
 
-
-
 //set static
 app.use(express.static('public'));
-
+app.use(express.static(__dirname + '/public'));
 
 app.engine('handlebars', exphbs({
   defaultLayout: 'main'
@@ -45,10 +43,10 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //detect if user is logged in thne display menu items
-// app.use(function (req, res, next){
-//   res.locals.user = req.user || null
-//   next()
-// })
+app.use(function (req, res, next){
+  res.locals.user = req.user || null
+  next()
+})
 
 //load routes
 const users = require('./routes/users')

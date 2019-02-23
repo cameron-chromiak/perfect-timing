@@ -13,8 +13,8 @@ router.post('/new-row', (req, res)=>{
   console.log(req.body);
 })
 
-router.get('/', (req, res)=>{
-  res.render('dashboard')
+router.get('/create', (req, res)=>{
+  res.render('scheduele/create')
 })
 
 module.exports = router;

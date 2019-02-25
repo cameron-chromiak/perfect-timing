@@ -9,12 +9,12 @@ require('../models/dayScheduele');
 const DaySchema = mongoose.model('day');
 
 router.post('/new-row', (req, res)=>{
-  console.log(req.body);
+  // console.log(req.body);
 })
 
 //Save Schedule
 router.post('/save', (req, res)=>{
-  console.log('x');
+
 })
 
 //dashboard
@@ -34,7 +34,8 @@ router.get('/create', ensureAuthenticated, (req, res, next)=>{
   res.render('scheduele/create')
 })
 
-// This is the POST of /create
+// This is the POST of /create adds date to collection and checks if
+// incoming req has a previously used date
 router.post('/create', ensureAuthenticated, (req, res, next)=>{
   let errors = []
   DaySchema.findOne({
@@ -48,7 +49,7 @@ router.post('/create', ensureAuthenticated, (req, res, next)=>{
         date: req.body.date
     })
     newDay.save()
-    console.log(Object.entries(newDay));
+    // console.log(Object.entries(newDay));
     res.render('scheduele/builder', {'currentDate': newDay })
     }
   })

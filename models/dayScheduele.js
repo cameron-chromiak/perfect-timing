@@ -5,8 +5,8 @@ const Schema = mongoose.Schema;
 
 const DaySchema = new Schema({
   date: {type: Date},
-  row: []
-
+  row: [],
+  rawHTML: {type: String}
 })
 
 mongoose.model('day', DaySchema)

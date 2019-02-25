@@ -18,10 +18,10 @@ router.get('/dashboard', (req,res)=>{
     DaySchema.find().then(days =>{
       if(days){
         console.log(days);
-      // FIXME: does not send 
+      // FIXME: does not send
         res.render('scheduele/dashboard', {'stats': days})
       }else{
-        console.log('no days found');
+        res.render('scheduele/dashboard', {err: "You've no schedueles"})
       }
     })
   }catch(err){
@@ -33,7 +33,8 @@ router.get('/create', (req, res)=>{
   res.render('scheduele/create')
 })
 
-router.post('/build', (req, res)=>{
+// This is a the POST of /create
+router.post('/create', (req, res)=>{
   let errors = []
   DaySchema.findOne({
       date: req.body.date
@@ -46,7 +47,8 @@ router.post('/build', (req, res)=>{
         date: req.body.date
     })
     newDay.save()
-    res.render('scheduele/builder')
+    console.log(Object.entries(newDay));
+    res.render('scheduele/builder', {'currentDate': newDay })
     }
   })
 })

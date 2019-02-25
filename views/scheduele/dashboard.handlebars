@@ -26,7 +26,12 @@
   </div>
     <hr>
     <div class="container card-area">
-      <div class="well">
+      <div class="alert alert-danger">
+        {{#each err}}
+          {{err}}
+        {{/each}}
+      </div>
+      <div class="alert">
         {{#each stats}}
           {{stats}}
         {{/each}}

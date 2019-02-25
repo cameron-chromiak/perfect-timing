@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+    crossorigin="anonymous">
+  <title>Document</title>
+</head>
+<body>
+
+<hr>
+<style>
+
+.bg-green{
+  background: lightgreen;
+}
+.generated-row{
+  /* border: 1px solid black; */
+  white-space: nowrap;
+  height: 35px;
+  margin-bottom: 0;
+}
+.generated-div{
+  height: 35px;
+  width: 75px;
+  vertical-align: bottom;
+
+  /* background: lightgrey; */
+  margin-right: 0;
+}
+.constant-headers{
+  padding-bottom: 30px;
+}
+.scheduele-container{
+  overflow-x: scroll;
+  white-space: nowrap;
+  color: red;
+  height: 500px;
+}
+.marg{
+    margin-left: -4px;
+    width: 75px;
+    padding-left: 10px;
+
+}
+*{
+  margin: 0;
+  padding: 0
+}
+
+}
+
+</style>
+
+<div class="scheduele-container text-center" id="scheduele-container">
+  <div class="constant-headers" id="constant-headers">
+    <div class="d-inline-block border py-2 marg">Name</div>
+    <div class="d-inline-block border py-2 marg">0800</div>
+    <div class="d-inline-block border py-2 marg">0900</div>
+    <div class="d-inline-block border py-2 marg">1000</div>
+    <div class="d-inline-block border py-2 marg">1100</div>
+    <div class="d-inline-block border py-2 marg">1200</div>
+    <div class="d-inline-block border py-2 marg">1300</div>
+    <div class="d-inline-block border py-2 marg">1400</div>
+    <div class="d-inline-block border py-2 marg">1500</div>
+    <div class="d-inline-block border py-2 marg">1600</div>
+    <div class="d-inline-block border py-2 marg">1700</div>
+    <div class="d-inline-block border py-2 marg">1800</div>
+    <div class="d-inline-block border py-2 marg">1900</div>
+    <div class="d-inline-block border py-2 marg">2000</div>
+    <div class="d-inline-block border py-2 marg">2100</div>
+    <div class="d-inline-block border py-2 marg">2200</div>
+    <div class="d-inline-block border py-2 marg">2300</div>
+    <div class="d-inline-block border py-2 marg">2400</div>
+  </div>``
+</div>
+<input type="text" id="nameInput" value=""><br>
+<button type="button" id="addRowBtn" class="btn btn-primary" name="button">Add row</button>
+<form action="/scheduele/create" method="POST">
+  <button type="submit" class="btn btn-success" name="button">This will be a save button</button>
+</form>
+
+
+  <script type="text/javascript">
+
+
+  let idCount = 1
+
+  $('#addRowBtn').click(generateRow)
+
+
+
+  function generateRow(){
+    var newName = document.getElementById("nameInput").value;
+    for(let i=0; i<17; i++){
+      jQuery('<div/>',{
+        id: `row-${idCount}-cell${i}`,
+        class: `d-inline-block border px-4 py-2 generated-div row${idCount}`,
+      }).appendTo('#scheduele-container')
+    }
+    document.getElementById(`row-${idCount}-cell0`).innerHTML = newName
+    jQuery('<br>').appendTo('#scheduele-container')
+    idCount +=1
+  }
+
+  //make first cell not clickable and delete on click
+
+
+
+  $('#scheduele-container').on("click", "div", function(){
+    if($(this).attr('id').includes('cell0') ){
+      let thisRow = $(this).attr('id')[4]
+      thisRow = document.querySelectorAll(`.row${thisRow}`)
+      thisRow.forEach(item =>{
+        //need to remove br
+        item.remove()
+      })
+    }else{
+    $(this).toggleClass('bg-green')
+  }
+    // if not a time cell or cell 0 in any row
+  });
+
+  </script>
+
+
+</body>
+</html>

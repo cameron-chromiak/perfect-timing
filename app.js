@@ -4,7 +4,8 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const session = require('express-session');
-
+var handlebars = require('handlebars');
+handlebars.registerHelper('moment', require('helper-moment'));
 const app = express()
 
 //connect to mongoose

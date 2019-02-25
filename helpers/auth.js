@@ -1,10 +1,11 @@
 module.exports = {
   ensureAuthenticated: function(req, res, next){
     if(req.isAuthenticated()){
-      return next
-    }
-    // req.flash('error_msg', 'You must login');
+      return next()
+    }else{
     console.log('no can do');
-    res.redirect('/users/login')
+    //send message w this
+    res.render('/users/login', {'err': "You must log in"})
   }
+}
 }

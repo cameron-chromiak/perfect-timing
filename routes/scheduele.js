@@ -12,29 +12,30 @@ router.post('/new-row', (req, res)=>{
   console.log(req.body);
 })
 
-//dashboard
-router.get('/dashboard', (req,res)=>{
-  try{
-    DaySchema.find().then(days =>{
-      if(days){
-        console.log(days);
-      // FIXME: does not send
-        res.render('scheduele/dashboard', {'stats': days})
-      }else{
-        res.render('scheduele/dashboard', {err: "You've no schedueles"})
-      }
-    })
-  }catch(err){
-    throw err
-  }
+//Save Schedule
+router.post('/save', (req, res)=>{
+  console.log('x');
 })
 
-router.get('/create', (req, res)=>{
+//dashboard
+router.get('/dashboard', ensureAuthenticated, (req,res, next)=>{
+  let errors = []
+    DaySchema.find().then(days =>{
+      if(days.length > 0){
+        res.render('scheduele/dashboard', {'stats': days})
+      }else{
+        errors.push({text: "You do not have any schedules"})
+        res.render('scheduele/dashboard', {err: errors })
+      }
+    })
+})
+
+router.get('/create', ensureAuthenticated, (req, res, next)=>{
   res.render('scheduele/create')
 })
 
-// This is a the POST of /create
-router.post('/create', (req, res)=>{
+// This is the POST of /create
+router.post('/create', ensureAuthenticated, (req, res, next)=>{
   let errors = []
   DaySchema.findOne({
       date: req.body.date

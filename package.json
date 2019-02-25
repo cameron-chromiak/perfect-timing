@@ -15,6 +15,7 @@
     "express": "*",
     "express-handlebars": "^3.0.0",
     "express-session": "^1.15.6",
+    "helper-moment": "^0.2.0",
     "mongoose": "^5.4.13",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0"

@@ -26,14 +26,17 @@
   </div>
     <hr>
     <div class="container card-area">
-      <div class="alert alert-danger">
-        {{#each err}}
-          {{err}}
-        {{/each}}
-      </div>
+      {{#each err}}
+        <div class="alert alert-danger">
+          {{text}}
+        </div>
+      {{/each}}
       <div class="alert">
+
         {{#each stats}}
-          {{stats}}
+          <li>
+            {{moment date "MMM Do YY"}}
+          </li>
         {{/each}}
         </div>
     </div>

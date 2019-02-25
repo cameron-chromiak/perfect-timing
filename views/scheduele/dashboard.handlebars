@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div class="row">
+    <div class="container">
+      <div class="col-md-8">
+        <h3>Welcome to your dashboard </h3>
+          <small class="text-mutes">Create a new scheduele or see the ones
+              you've made. <br>
+                    <a href="/scheduele/create">Or make one</a>
+          </small>
+        <div class="col-md-4">
+          <form class="form-control" action="index.html" method="post">
+              <h5>Search</h5>
+              <input type="text" name="" value="">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+    <hr>
+    <div class="container card-area">
+      <div class="well">
+        {{#each stats}}
+          {{stats}}
+        {{/each}}
+        </div>
+    </div>
+
+</body>
+</html>

@@ -21,14 +21,9 @@ router.get('/register', (req, res) => {
 //login
 router.post('/login', (req, res, next)=>{
   passport.authenticate('local', {
-    successRedirect: '/users/dashboard',
+    successRedirect: '/scheduele/dashboard',
     failureRedirect: '/users/login'
   })(req, res, next)
-})
-
-//dashboard
-router.get('/dashboard', (req,res)=>{
-  res.render('dashboard')
 })
 
 //register form post

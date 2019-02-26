@@ -9,23 +9,8 @@ require('../models/dayScheduele');
 const DaySchema = mongoose.model('day');
 
 
-// //save day to db
-// router.post('/save', (req, res)=>{
-//     console.log(req.body,'adsfafdsadsafdsafdsafda')
-//       const newDay = new DaySchema({
-//       date: dateFromForm,
-//       name: nameObjects
-//     })
-//     newDay.save()
-//     // console.log(newDay);
-//     res.redirect('/scheduele/dashboard')
-//
-//
-//
-// })
-//Push object to model
 router.post('/pushObject', (req, res)=>{
-  console.log(req.body, 1324321432143214321)
+  console.log(req.body)
   let newName = {
     name: req.body.name,
     start: req.body.start,
@@ -54,7 +39,13 @@ router.post('/newDay', (req, res)=>{ //create new day
 
 router.get('/day/:id',ensureAuthenticated,(req,res)=>{ //show day
   res.render('scheduele/builder')
+  DaySchema.findOne({
+    _id: req.params.id
+    }).catch(function(err){
+    console.log(err);
+  })
 })
+
 
 router.post('/day/:id',ensureAuthenticated,(req,res)=>{ //save and update day
   console.log('hopefully',req.params,req.body)
@@ -62,8 +53,8 @@ router.post('/day/:id',ensureAuthenticated,(req,res)=>{ //save and update day
     day.name = req.body
     day.save(function(err,day){
       if(!err){
-        console.log(day)
-        res.json({fuckya:true})
+        console.log("from router.post /day:id", day)
+
       }
     })
   })
@@ -86,24 +77,5 @@ router.get('/build', ensureAuthenticated, (req, res, next)=>{
   res.render('scheduele/builder')
 })
 
-// router.post('/create', ensureAuthenticated, (req, res, next)=>{
-//   let errors = []
-//   DaySchema.findOne({
-//       date: req.body.date,
-//       rawHTML: req.body.rawHTML
-//     }).then(day => {
-//       if (day) {
-//         errors.push({text: "You alreay have a scheduele for this day"})
-//         res.render('scheduele/create', {errors: errors})
-//       }else{
-//         const newDay = new DaySchema({
-//         date: req.body.date
-//     })
-//     newDay.save()
-//     // console.log(Object.entries(newDay));
-//     res.render('scheduele/builder', {'currentDate': newDay })
-//     }
-//   })
-// })
 
 module.exports = router;

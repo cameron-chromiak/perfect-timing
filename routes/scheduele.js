@@ -8,24 +8,24 @@ const router = express.Router()
 require('../models/dayScheduele');
 const DaySchema = mongoose.model('day');
 
-let dateFromForm
-let nameObjects = []
-//save day to db
-router.post('/save', (req, res)=>{
-  if(!req.body.date){
-      req.flash('errorMessage', 'You need a date');
-  }else{
-      const newDay = new DaySchema({
-      date: dateFromForm,
-      name: nameObjects
-    })
-    res.redirect('/scheduele/dashboard')
-  }
 
-
-})
+// //save day to db
+// router.post('/save', (req, res)=>{
+//     console.log(req.body,'adsfafdsadsafdsafdsafda')
+//       const newDay = new DaySchema({
+//       date: dateFromForm,
+//       name: nameObjects
+//     })
+//     newDay.save()
+//     // console.log(newDay);
+//     res.redirect('/scheduele/dashboard')
+//
+//
+//
+// })
 //Push object to model
 router.post('/pushObject', (req, res)=>{
+  console.log(req.body, 1324321432143214321)
   let newName = {
     name: req.body.name,
     start: req.body.start,
@@ -34,7 +34,24 @@ router.post('/pushObject', (req, res)=>{
   dateFromForm = req.body.date
   nameObjects.push(newName)
   // console.log(nameObjects, dateFromForm);
+})
 
+router.post('/newDay', (req, res)=>{
+      console.log(req.body,)
+        const newDay = new DaySchema({
+        date: req.body.date,
+        userId: req.user._id
+      })
+      newDay.save(function(err,day){
+        if(!err){
+          console.log(day)
+          res.redirect(`day/${day._id}`)
+        }
+      })
+})
+
+router.get('/day/:id',ensureAuthenticated,(req,res)=>{
+  res.render('scheduele/builder')
 })
 
 //dashboard

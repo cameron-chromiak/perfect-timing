@@ -52,7 +52,7 @@
 
 </style>
 <hr>
-<h3>Table Testing</h3>
+<h3>Word.</h3>
 <hr>
 <div class="scheduele-container text-center" id="scheduele-container">
 <div class="constant-headers" id="constant-headers">
@@ -85,9 +85,13 @@
     </div>
   {{/each}}
   <div class="form-container">
+
+
+
+
   <form action="/scheduele/pushObject" method="POST">
       <h3>Select Date</h3>
-      <input name="date" type="date">
+      <input name="date" id='date' type="date">
 <div class="row">
   <div class="col-md-8">
     <h5>Name</h5>
@@ -140,18 +144,23 @@
 </div>
 <div class="row">
   <div class="col-md-6">
-    <button type="submit" class="btn btn-primary mt-2" id="add-btn"name="button">Add</button>
+    <!-- <button type="submit" class="btn btn-primary mt-2" id="add-btn"name="button">Add</button> -->
   </div>
 </div>
 </form>
-<form class="" action="/scheduele/save" method="post">
+
+<button type="submit" class="btn btn-primary mt-2" id="add-btn"name="button">Add</button>
+
+<!-- <form class="" action="/scheduele/save" method="post">
   <button type="submit" method='POST'class="btn btn-success mt-2" name="button">Save</button>
-</form>
+</form> -->
 </div>
 
 <script type="text/javascript">
 let rowCount = 1
 let myObj = []
+let date
+
 let addBtn = document.getElementById('add-btn')
 
 addBtn.addEventListener('click', createNewObj)
@@ -160,6 +169,7 @@ function createNewObj(){
   let startTime = document.getElementById('time-start').value
   let endTime = document.getElementById('time-end').value
   let name = document.getElementById('new-name').value
+  date = document.getElementById('')
   myObj.push({name: name, start: startTime, end: endTime})
   clearBoard()//main is called within
 

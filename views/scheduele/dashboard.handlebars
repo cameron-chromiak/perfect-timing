@@ -13,7 +13,11 @@
         <h3>Welcome to your dashboard </h3>
           <small class="text-mutes">Create a new scheduele or see the ones
               you've made. <br>
-                    <a href="/scheduele/build">Or make one</a>
+              <h3>Select Date</h3>
+              <form class="" action="/scheduele/newDay" method="post">
+                <input name="date" id='date' type="date">
+                      <button type="submit" name="button">Make</button>
+              </form>
           </small>
         <div class="col-md-4">
           <form class="form-control" action="index.html" method="post">
@@ -35,7 +39,7 @@
 
         {{#each stats}}
           <li>
-            {{moment date "MMM Do YY"}}
+            {{date}}
           </li>
         {{/each}}
         </div>

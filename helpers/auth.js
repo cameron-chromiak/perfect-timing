@@ -5,6 +5,7 @@ module.exports = {
     }else{
     let errors = []
     errors.push({text: "You need to log in for that"})
+    // console.log('log in');
     res.redirect('/users/login')
   }
 }

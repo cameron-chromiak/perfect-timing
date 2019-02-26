@@ -5,6 +5,8 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 const session = require('express-session');
 var handlebars = require('handlebars');
+var flash = require('req-flash');
+
 handlebars.registerHelper('moment', require('helper-moment'));
 const app = express()
 
@@ -39,6 +41,10 @@ app.use(session({
   resave: true,
   saveUninitialized: true
 }));
+
+//req-flash
+app.use(flash());
+flash({ locals: 'flash' })
 //passport middleware
 app.use(passport.initialize());
 app.use(passport.session());

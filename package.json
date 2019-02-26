@@ -15,9 +15,11 @@
     "express": "*",
     "express-handlebars": "^3.0.0",
     "express-session": "^1.15.6",
+    "flash-express": "^1.0.4",
     "helper-moment": "^0.2.0",
     "mongoose": "^5.4.13",
     "passport": "^0.4.0",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "req-flash": "0.0.3"
   }
 }

@@ -182,7 +182,6 @@ function saveObject(){
     console.log(res);
 
   })
-
 }
 
 function main() {
@@ -206,7 +205,7 @@ function addHourDivs(rowCount, person) {
     if (i == 0) {
       jQuery('<div/>', {
         id: `row${rowCount}-cell${i}`,
-        class: `d-inline-block generated-div border zero-row${rowCount} `,
+        class: `d-inline-block generated-div border zero `,
         text: person.name
       }).appendTo(`#row-${rowCount}`)
     } else {
@@ -218,6 +217,20 @@ function addHourDivs(rowCount, person) {
   }
   changeCellColor(start, end)
 }
+
+$('body').on('click', '.d-block', function(e){
+  let i = $(this).index()
+  myObj.splice(i, 1)
+  console.log(myObj)
+  // $(this).remove()
+})
+
+// $('.d-block').click(function(e){
+//   let i = $(this).index()
+//   myObj.splice(i, 1)
+//   console.log(myObj)
+//   $(this).remove()
+// })
 
 
 function changeCellColor(start, end) {
@@ -232,15 +245,23 @@ function changeCellColor(start, end) {
 
 }
 
-$('.row-container').on("click", "div", function() {
-  if ($(this).attr('class').includes('zero')) {
-    let thisRow = $(this).attr('id')[3]
-    thisRow = document.querySelectorAll(`[id*=row${thisRow}`)
-    thisRow.forEach(elem => {
-      elem.remove()
-    })
-  }
-})
+// $('.row-container').on("click", "div", function() {
+//   if ($(this).attr('class').includes('zero')) {
+//     let thisRowNum = $(this).attr('id')[3]
+//     let thisText = $(this).text()
+//     Object.keys(myObj).forEach(function(key) {
+//     if (myObj.name == thisText) {
+//       myObj.splice(myObj.indexOf(this), 1)
+//     }
+//   })
+//     thisRow = document.querySelectorAll(`[id*=row${thisRowNum}`)
+//
+//     thisRow.forEach(elem => {
+//       elem.remove()
+//     })
+//
+//   }
+// })
 
 
 

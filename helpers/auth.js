@@ -3,9 +3,9 @@ module.exports = {
     if(req.isAuthenticated()){
       return next()
     }else{
-    console.log('no can do');
-    //send message w this
-    res.render('/users/login', {'err': "You must log in"})
+    let errors = []
+    errors.push({text: "You need to log in for that"})
+    res.redirect('/users/login')
   }
 }
 }

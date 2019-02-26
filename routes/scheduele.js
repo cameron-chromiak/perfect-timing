@@ -8,9 +8,6 @@ const router = express.Router()
 require('../models/dayScheduele');
 const DaySchema = mongoose.model('day');
 
-router.post('/new-row', (req, res)=>{
-  // console.log(req.body);
-})
 
 //Save Schedule
 router.post('/save', (req, res)=>{
@@ -30,8 +27,8 @@ router.get('/dashboard', ensureAuthenticated, (req,res, next)=>{
     })
 })
 
-router.get('/create', ensureAuthenticated, (req, res, next)=>{
-  res.render('scheduele/create')
+router.get('/build', ensureAuthenticated, (req, res, next)=>{
+  res.render('scheduele/builder')
 })
 
 // This is the POST of /create adds date to collection and checks if

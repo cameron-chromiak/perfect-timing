@@ -39,7 +39,8 @@ router.get('/create', ensureAuthenticated, (req, res, next)=>{
 router.post('/create', ensureAuthenticated, (req, res, next)=>{
   let errors = []
   DaySchema.findOne({
-      date: req.body.date
+      date: req.body.date,
+      rawHTML: req.body.rawHTML
     }).then(day => {
       if (day) {
         errors.push({text: "You alreay have a scheduele for this day"})

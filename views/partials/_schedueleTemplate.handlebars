@@ -11,9 +11,10 @@
 </head>
 <body>
 
-<hr>
-<style>
-
+<style media="screen">
+.row-container{
+  white-space: nowrap;
+}
 .bg-green{
   background: lightgreen;
 }
@@ -27,105 +28,228 @@
   height: 35px;
   width: 75px;
   vertical-align: bottom;
-
+  margin-top: 1px;
+  margin-top: 5px;
   /* background: lightgrey; */
   margin-right: 0;
 }
 .constant-headers{
+
+  white-space: nowrap;
   padding-bottom: 30px;
 }
 .scheduele-container{
   overflow-x: scroll;
   white-space: nowrap;
-  color: red;
   height: 500px;
 }
 .marg{
     margin-left: -4px;
     width: 75px;
     padding-left: 10px;
-
-}
-*{
-  margin: 0;
-  padding: 0
 }
 
-}
 
 </style>
-
+<hr>
+<h3>Table Testing</h3>
+<hr>
 <div class="scheduele-container text-center" id="scheduele-container">
-  <div class="constant-headers" id="constant-headers">
-    <div class="d-inline-block border py-2 marg">Name</div>
-    <div class="d-inline-block border py-2 marg">0800</div>
-    <div class="d-inline-block border py-2 marg">0900</div>
-    <div class="d-inline-block border py-2 marg">1000</div>
-    <div class="d-inline-block border py-2 marg">1100</div>
-    <div class="d-inline-block border py-2 marg">1200</div>
-    <div class="d-inline-block border py-2 marg">1300</div>
-    <div class="d-inline-block border py-2 marg">1400</div>
-    <div class="d-inline-block border py-2 marg">1500</div>
-    <div class="d-inline-block border py-2 marg">1600</div>
-    <div class="d-inline-block border py-2 marg">1700</div>
-    <div class="d-inline-block border py-2 marg">1800</div>
-    <div class="d-inline-block border py-2 marg">1900</div>
-    <div class="d-inline-block border py-2 marg">2000</div>
-    <div class="d-inline-block border py-2 marg">2100</div>
-    <div class="d-inline-block border py-2 marg">2200</div>
-    <div class="d-inline-block border py-2 marg">2300</div>
-    <div class="d-inline-block border py-2 marg">2400</div>
+<div class="constant-headers" id="constant-headers">
+  <div class="d-inline-block border py-2 marg">Name</div>
+  <div class="d-inline-block border py-2 marg">1200</div>
+  <div class="d-inline-block border py-2 marg">0900</div>
+  <div class="d-inline-block border py-2 marg">1000</div>
+  <div class="d-inline-block border py-2 marg">1100</div>
+  <div class="d-inline-block border py-2 marg">1200</div>
+  <div class="d-inline-block border py-2 marg">1300</div>
+  <div class="d-inline-block border py-2 marg">1400</div>
+  <div class="d-inline-block border py-2 marg">1500</div>
+  <div class="d-inline-block border py-2 marg">1600</div>
+  <div class="d-inline-block border py-2 marg">1700</div>
+  <div class="d-inline-block border py-2 marg">1800</div>
+  <div class="d-inline-block border py-2 marg">1900</div>
+  <div class="d-inline-block border py-2 marg">2000</div>
+  <div class="d-inline-block border py-2 marg">2100</div>
+  <div class="d-inline-block border py-2 marg">2200</div>
+  <div class="d-inline-block border py-2 marg">2300</div>
+  <div class="d-inline-block border py-2 marg">2400</div>
+</div>
+<div class="row-container"></div>
+</div>
+
+<div class="col-md-8 mx-auto">
+  {{#each errors}}
+    <div class="alert alert-danger">
+      {{text}}
+    </div>
+  {{/each}}
+  <div class="form-container">
+  <form action="/scheduele/create" method="POST">
+      <h3>Select Date</h3>
+      <input name="date" type="date">
+<div class="row">
+  <div class="col-md-3">
+    <h5>Name</h5>
+    <input type="text" id="new-name" name="name" class="d-inline">
+  </div>
+  <div class="col-md-1">
+    <h5>Start</h5>
+      <select id="time-start"name="time-start">
+        <option>8</option>
+        <option>9</option>
+        <option>10</option>
+        <option>11</option>
+        <option>12</option>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+        <option>6</option>
+        <option>7</option>
+        <option>8</option>
+        <option>9</option>
+        <option>10</option>
+        <option>11</option>
+        <option>12</option>
+      </select>
+  </div>
+  <div class="col-md-1">
+    <h5>End</h5>
+      <select id="time-end" name="time-end">
+        <option>8</option>
+        <option>9</option>
+        <option>10</option>
+        <option>11</option>
+        <option>12</option>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+        <option>6</option>
+        <option>7</option>
+        <option>8</option>
+        <option>9</option>
+        <option>10</option>
+        <option>11</option>
+        <option>12</option>
+      </select>
   </div>
 </div>
-<input type="text" id="nameInput" value=""><br>
-<button type="button" id="addRowBtn" class="btn btn-primary" name="button">Add row</button>
-<form action="/scheduele/save" method="POST">
-  <button type="submit" class="btn btn-success" name="button">This will be a save button</button>
+<div class="row">
+  <div class="col-md-6">
+    <button type="button" class="btn btn-primary mt-2" id="add-btn"name="button">Add</button>
+    <button type="button" class="btn btn-success mt-2" name="button">Save</button>
+  </div>
+</div>
 </form>
+</div>
 
+<script type="text/javascript">
+let rowCount = 1
 
-  <script type="text/javascript">
+let addBtn = document.getElementById('add-btn')
 
+addBtn.addEventListener('click', createNewObj)
 
-  let idCount = 1
+function createNewObj(){
+  let startTime = document.getElementById('time-start').value
+  let endTime = document.getElementById('time-end').value
+  let name = document.getElementById('new-name').value
+  myObj.push({name: name, start: startTime, end: endTime})
+  clearBoard()
 
-  $('#addRowBtn').click(generateRow)
+}
 
+myObj = [{
+  name: "Jim",
+  start: 1,
+  end: 9
+}, {
+  name: "Bob",
+  start: 2,
+  end: 9
+}, {
+  name: "Skeeter",
+  start: 3,
+  end: 7
+}, {
+  name: "Jennylee",
+  start: 8,
+  end: 12
+}]
 
+function main() {
+  myObj.forEach(function(person) {
+    // console.log(person.name, person.start, person.end);
+    jQuery('<div/>', {
+      id: `row-${rowCount}`,
+      class: 'd-block',
+    }).appendTo('.row-container')
+    addHourDivs(rowCount, person)
+    rowCount += 1
+  })
+}
 
-  function generateRow(){
-    var newName = document.getElementById("nameInput").value;
-    for(let i=0; i<17; i++){
-      jQuery('<div/>',{
-        id: `row-${idCount}-cell${i}`,
-        class: `d-inline-block border px-4 py-2 generated-div row${idCount}`,
-      }).appendTo('#scheduele-container')
+function addHourDivs(rowCount, person) {
+  //+5 to account for offset
+  let start = Number(person.start) + 5
+  let end = Number(person.end) + 5
+  let rowDivs
+  for (let i = 0; i < 18; i++) {
+    if (i == 0) {
+      jQuery('<div/>', {
+        id: `row${rowCount}-cell${i}`,
+        class: `d-inline-block generated-div border zero-row${rowCount} `,
+        text: person.name
+      }).appendTo(`#row-${rowCount}`)
+    } else {
+      jQuery('<div/>', {
+        id: `row${rowCount}-cell${i}`,
+        class: `d-inline-block generated-div border px-4 py-2`
+      }).appendTo(`#row-${rowCount}`)
     }
-    document.getElementById(`row-${idCount}-cell0`).innerHTML = newName
-    jQuery('<br>').appendTo('#scheduele-container')
-    idCount +=1
   }
+  changeCellColor(start, end)
+}
 
-  //make first cell not clickable and delete on click
 
-
-
-  $('#scheduele-container').on("click", "div", function(){
-    if($(this).attr('id').includes('cell0') ){
-      let thisRow = $(this).attr('id')[4]
-      thisRow = document.querySelectorAll(`.row${thisRow}`)
-      thisRow.forEach(item =>{
-        //need to remove br
-        item.remove()
-      })
-    }else{
-    $(this).toggleClass('bg-green')
+function changeCellColor(start, end) {
+  rowDivs = document.querySelectorAll(`#row${rowCount}-cell${start}`)
+  while (start < end) {
+    rowDivs = document.querySelectorAll(`#row${rowCount}-cell${start}`)
+    rowDivs.forEach(cell => {
+      $(cell).toggleClass('bg-green')
+    })
+    start += 1
   }
-    // if not a time cell or cell 0 in any row
-  });
+  // let firstCellInRow = document.querySelectorAll('.zero-cell')
+}
 
-  </script>
+$('.row-container').on("click", "div", function() {
+  if ($(this).attr('class').includes('zero')) {
+    let thisRow = $(this).attr('id')[3]
+    thisRow = document.querySelectorAll(`[id*=row${thisRow}`)
+    thisRow.forEach(elem => {
+      elem.remove()
+    })
+  }
+})
 
+
+
+function clearBoard(){
+  $('.row-container').empty()
+
+    main()
+}
+
+main()
+
+
+</script>
 
 </body>
 </html>

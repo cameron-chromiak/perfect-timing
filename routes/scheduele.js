@@ -36,11 +36,11 @@ router.post('/pushObject', (req, res)=>{
   // console.log(nameObjects, dateFromForm);
 })
 
-router.post('/newDay', (req, res)=>{
+router.post('/newDay', (req, res)=>{ //create new day
       console.log(req.body,)
         const newDay = new DaySchema({
         date: req.body.date,
-        userId: req.user._id
+        userId: req.user._id //add use to day - must be logged in
       })
       newDay.save(function(err,day){
         if(!err){
@@ -50,8 +50,23 @@ router.post('/newDay', (req, res)=>{
       })
 })
 
-router.get('/day/:id',ensureAuthenticated,(req,res)=>{
+
+
+router.get('/day/:id',ensureAuthenticated,(req,res)=>{ //show day
   res.render('scheduele/builder')
+})
+
+router.post('/day/:id',ensureAuthenticated,(req,res)=>{ //save and update day
+  console.log('hopefully',req.params,req.body)
+  DaySchema.findOne({_id:req.params.id}).then(day=>{
+    day.name = req.body
+    day.save(function(err,day){
+      if(!err){
+        console.log(day)
+        res.json({fuckya:true})
+      }
+    })
+  })
 })
 
 //dashboard

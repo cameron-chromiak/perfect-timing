@@ -90,8 +90,6 @@
 
 
   <form action="/scheduele/pushObject" method="POST">
-      <h3>Select Date</h3>
-      <input name="date" id='date' type="date">
 <div class="row">
   <div class="col-md-8">
     <h5>Name</h5>
@@ -150,6 +148,7 @@
 </form>
 
 <button type="submit" class="btn btn-primary mt-2" id="add-btn"name="button">Add</button>
+<button type="submit"class="btn btn-success mt-2" id="save-btn" name="button">Save</button>
 
 <!-- <form class="" action="/scheduele/save" method="post">
   <button type="submit" method='POST'class="btn btn-success mt-2" name="button">Save</button>
@@ -159,19 +158,29 @@
 <script type="text/javascript">
 let rowCount = 1
 let myObj = []
-let date
+
 
 let addBtn = document.getElementById('add-btn')
+let saveBtn = document.getElementById('save-btn')
 
 addBtn.addEventListener('click', createNewObj)
+saveBtn.addEventListener('click', saveObject)
 
 function createNewObj(){
   let startTime = document.getElementById('time-start').value
   let endTime = document.getElementById('time-end').value
   let name = document.getElementById('new-name').value
-  date = document.getElementById('')
+  // date = document.getElementById('date')
   myObj.push({name: name, start: startTime, end: endTime})
   clearBoard()//main is called within
+
+}
+
+function saveObject(){
+  $.post('', {myObj:myObj}, function(res){
+    console.log(res);
+
+  })
 
 }
 

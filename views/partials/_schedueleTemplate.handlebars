@@ -158,47 +158,41 @@
 let rowCount = 1
 let myObj = []
 var myObj2 = JSON.parse('{{{json myObj2}}}')
-
 console.log(myObj2)
+
+
 let addBtn = document.getElementById('add-btn')
 let saveBtn = document.getElementById('save-btn')
 let dltBtn = document.getElementById('delete-btn')
-
 addBtn.addEventListener('click', createNewObj)
 saveBtn.addEventListener('click', saveObj)
 saveBtn.addEventListener('click', deleteObj)
 
-$('body').ready(function(){
-  main(myObj2)
-})
 
+$('body').ready(function(){
+  myObj = myObj.concat(myObj2)
+  main(myObj)
+})
 
 function createNewObj(){
   let startTime = document.getElementById('time-start').value
   let endTime = document.getElementById('time-end').value
   let name = document.getElementById('new-name').value
-  // date = document.getElementById('date')
   myObj.push({name: name, start: startTime, end: endTime})
   clearBoard()//main is called within
-
 }
-
 function saveObj(){
   $.post('', {data:JSON.stringify(myObj)}, function(res){
     // console.log(res);
-
   })
 }
-
 function deleteObj(){
   // $.post('', {myObj:myObj}, function(res){
   //
   // })
 }
-
 function main(obj) {
   obj.forEach(function(person) {
-
     jQuery('<div/>', {
       id: `row-${rowCount}`,
       class: 'd-block',
@@ -207,7 +201,6 @@ function main(obj) {
     rowCount += 1
   })
 }
-
 function addHourDivs(rowCount, person) {
   //+5 to account for offset
   let start = Number(person.start)
@@ -229,22 +222,18 @@ function addHourDivs(rowCount, person) {
   }
   changeCellColor(start, end)
 }
-
 $('body').on('click', '.d-block', function(e){
   let i = $(this).index()
   myObj.splice(i, 1)
   console.log(myObj)
   $(this).remove()
 })
-
 // $('.d-block').click(function(e){
 //   let i = $(this).index()
 //   myObj.splice(i, 1)
 //   console.log(myObj)
 //   $(this).remove()
 // })
-
-
 function changeCellColor(start, end) {
   rowDivs = document.querySelectorAll(`#row${rowCount}-cell${start}`)
   while (start < end) {
@@ -255,11 +244,9 @@ function changeCellColor(start, end) {
     start += 1
   }
 }
-
 function clearBoard(){
   $('.row-container').empty()
-
-    main(obj)
+    main(myObj)
 }
 
 

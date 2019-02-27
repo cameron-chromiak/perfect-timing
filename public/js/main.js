@@ -1,40 +1,33 @@
 // let rowCount = 1
+// let myObj = []
+//
 //
 // let addBtn = document.getElementById('add-btn')
+// let saveBtn = document.getElementById('save-btn')
 //
 // addBtn.addEventListener('click', createNewObj)
+// saveBtn.addEventListener('click', saveObject)
 //
 // function createNewObj(){
 //   let startTime = document.getElementById('time-start').value
 //   let endTime = document.getElementById('time-end').value
 //   let name = document.getElementById('new-name').value
+//   // date = document.getElementById('date')
 //   myObj.push({name: name, start: startTime, end: endTime})
-//   clearBoard()
+//   clearBoard()//main is called within
 //
 // }
 //
-// myObj = [{
-//   name: "Jim",
-//   start: 1,
-//   end: 9
-// }, {
-//   name: "Bob",
-//   start: 2,
-//   end: 9
-// }, {
-//   name: "Skeeter",
-//   start: 3,
-//   end: 7
-// }, {
-//   name: "Jennylee",
-//   start: 8,
-//   end: 12
-// }]
+// function saveObject(){
+//   $.post('', {myObj:myObj}, function(res){
+//     console.log(res);
+//
+//   })
+// }
 //
 // function main() {
-//   console.log('main');
 //   myObj.forEach(function(person) {
-//     // console.log(person.name, person.start, person.end);
+//
 //     jQuery('<div/>', {
 //       id: `row-${rowCount}`,
 //       class: 'd-block',
@@ -46,9 +39,8 @@
 //
 // function addHourDivs(rowCount, person) {
 //   //+5 to account for offset
-//   console.log('addHourDivs');
-//   let start = Number(person.start) + 5
-//   let end = Number(person.end) + 5
+//   let start = Number(person.start)
+//   let end = Number(person.end)
 //   let rowDivs
 //   for (let i = 0; i < 18; i++) {
 //     if (i == 0) {
@@ -67,38 +59,54 @@
 //   changeCellColor(start, end)
 // }
 //
+// $('body').on('click', '.d-block', function(e){
+//   let i = $(this).index()
+//   myObj.splice(i, 1)
+//   console.log(myObj)
+//   $(this).remove()
+// })
+//
+// // $('.d-block').click(function(e){
+// //   let i = $(this).index()
+// //   myObj.splice(i, 1)
+// //   console.log(myObj)
+// //   $(this).remove()
+// // })
+//
 //
 // function changeCellColor(start, end) {
-//   console.log('changeCellColor');
 //   rowDivs = document.querySelectorAll(`#row${rowCount}-cell${start}`)
 //   while (start < end) {
-//     console.log(start, end);
 //     rowDivs = document.querySelectorAll(`#row${rowCount}-cell${start}`)
 //     rowDivs.forEach(cell => {
 //       $(cell).toggleClass('bg-green')
 //     })
 //     start += 1
 //   }
-//   // let firstCellInRow = document.querySelectorAll('.zero-cell')
 // }
 //
-// $('.row-container').on("click", "div", function() {
-//   if ($(this).attr('class').includes('zero')) {
-//     let thisRow = $(this).attr('id')[3]
-//     thisRow = document.querySelectorAll(`[id*=row${thisRow}`)
-//     thisRow.forEach(elem => {
-//       elem.remove()
-//     })
-//   }
-// })
+// // $('.row-container').on("click", "div", function() {
+// //   if ($(this).attr('class').includes('zero')) {
+// //     let thisRowNum = $(this).attr('id')[3]
+// //     let thisText = $(this).text()
+// //     Object.keys(myObj).forEach(function(key) {
+// //     if (myObj.name == thisText) {
+// //       myObj.splice(myObj.indexOf(this), 1)
+// //     }
+// //   })
+// //     thisRow = document.querySelectorAll(`[id*=row${thisRowNum}`)
+// //
+// //     thisRow.forEach(elem => {
+// //       elem.remove()
+// //     })
+// //
+// //   }
+// // })
 //
 //
 //
 // function clearBoard(){
-//   console.log('clearBoard');
 //   $('.row-container').empty()
 //
 //     main()
 // }
-//
-// main()

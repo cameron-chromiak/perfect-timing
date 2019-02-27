@@ -7,33 +7,31 @@
   <title>Document</title>
 </head>
 <body>
-  <!-- Footer -->
-<footer class="page-footer font-small blue pt-4">
 
-    <!-- Footer Links -->
+<footer class="page-footer font-small pt-4">
     <div class="container-fluid text-center text-md-left">
-
-      <!-- Grid row -->
       <div class="row">
-
-        <!-- Grid column -->
-        <div class="col-md-6 mt-md-0 mt-3">
-
-          <!-- Content -->
+        <div class="col-md-6 col mt-md-0 mt-3">
           <h5 class="text-uppercase">Footer Content</h5>
           <p>Here you can use rows and columns here to organize your footer content.</p>
-
         </div>
-        <!-- Grid column -->
-
         <hr class="clearfix w-100 d-md-none pb-3">
-
-        <!-- Grid column -->
+        {{#if user}}
         <div class="col-md-3 mb-md-0 mb-3">
-
-            <!-- Links -->
             <h5 class="text-uppercase">Useful Links</h5>
+            <ul class="list-unstyled">
+              <li>
+                <a href="/scheduele/dashboard">Dashboard</a>
+              </li>
+              <li>
+                <a href="/scheduele/build">Builder</a>
+              </li>
+            </ul>
 
+          </div>
+        {{else}}
+        <div class="col-md-3 mb-md-0 mb-3">
+            <h5 class="text-uppercase">Useful Links</h5>
             <ul class="list-unstyled">
               <li>
                 <a href="/users/login">Login</a>
@@ -48,15 +46,10 @@
                 <a href="/scheduele/build">Builder</a>
               </li>
             </ul>
-
           </div>
+        {{/if}}
       </div>
-      <!-- Grid row -->
-
     </div>
-    <!-- Footer Links -->
-
-    <!-- Copyright -->
     <div class="footer-copyright text-center py-3">© 2019 Copyright:
       <a href="/"> Timng</a>
     </div>

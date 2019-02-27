@@ -1,43 +1,7 @@
 
-/* Build Schedule Style */
-.row-container{
-  white-space: nowrap;
+.form-control{
+  max-width: 200px;
 }
-.bg-green{
-  background: lightgreen;
-}
-.generated-row{
-  /* border: 1px solid black; */
-  white-space: nowrap;
-  height: 35px;
-  margin-bottom: 0;
-}
-.generated-div{
-  height: 35px;
-  width: 75px;
-  vertical-align: bottom;
-  margin-top: 1px;
-  margin-top: 5px;
-  /* background: lightgrey; */
-  margin-right: 0;
-}
-.constant-headers{
-
-  white-space: nowrap;
-  padding-bottom: 30px;
-}
-.scheduele-container{
-  overflow-x: scroll;
-  white-space: nowrap;
-  height: 500px;
-}
-.marg{
-    margin-left: -4px;
-    width: 75px;
-    padding-left: 10px;
-}
-
-
 /* //// */
 .right-btn{
   display: inline-block;
@@ -51,8 +15,12 @@
 .image-container{
 height: 30vw;
 }
+li{
+  list-style: none;
+}
 
 *{
   padding: 0;
   margin: 0;
+
 }

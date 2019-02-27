@@ -1,33 +1,50 @@
 // let rowCount = 1
 // let myObj = []
+// var myObj2 = JSON.parse('{{{json myObj2}}}')
+// console.log(myObj2)
 //
 //
 // let addBtn = document.getElementById('add-btn')
 // let saveBtn = document.getElementById('save-btn')
+// let dltBtn = document.getElementById('delete-btn')
+// let backSave = document.getElementById('back-save')
 //
 // addBtn.addEventListener('click', createNewObj)
-// saveBtn.addEventListener('click', saveObject)
+// saveBtn.addEventListener('click', saveObj)
+// backSave.addEventListener('click', saveObj)
+// dltBtn.addEventListener('click', deleteObj)
+//
+//
+// $('body').ready(function(){
+//   myObj = myObj.concat(myObj2)
+//   main(myObj)
+// })
 //
 // function createNewObj(){
 //   let startTime = document.getElementById('time-start').value
 //   let endTime = document.getElementById('time-end').value
 //   let name = document.getElementById('new-name').value
-//   // date = document.getElementById('date')
 //   myObj.push({name: name, start: startTime, end: endTime})
 //   clearBoard()//main is called within
-//
 // }
-//
-// function saveObject(){
-//   $.post('', {myObj:myObj}, function(res){
-//     console.log(res);
-//
+// function saveObj(){
+//   $.post('', {data:JSON.stringify(myObj)}, function(res){
+//     // console.log(res);
 //   })
 // }
-//
-// function main() {
-//   myObj.forEach(function(person) {
-//
+// function deleteObj(e){
+//   e.preventDefault()
+//   $.ajax({
+//     url: '',
+//     type: 'DELETE',
+//     success: function(e){
+//       console.log(e)
+//       window.location.pathname = '/scheduele/dashboard'
+//     }
+//   })
+// }
+// function main(obj) {
+//   obj.forEach(function(person) {
 //     jQuery('<div/>', {
 //       id: `row-${rowCount}`,
 //       class: 'd-block',
@@ -38,7 +55,6 @@
 // }
 //
 // function addHourDivs(rowCount, person) {
-//   //+5 to account for offset
 //   let start = Number(person.start)
 //   let end = Number(person.end)
 //   let rowDivs
@@ -58,22 +74,18 @@
 //   }
 //   changeCellColor(start, end)
 // }
-//
 // $('body').on('click', '.d-block', function(e){
 //   let i = $(this).index()
 //   myObj.splice(i, 1)
 //   console.log(myObj)
 //   $(this).remove()
 // })
-//
 // // $('.d-block').click(function(e){
 // //   let i = $(this).index()
 // //   myObj.splice(i, 1)
 // //   console.log(myObj)
 // //   $(this).remove()
 // // })
-//
-//
 // function changeCellColor(start, end) {
 //   rowDivs = document.querySelectorAll(`#row${rowCount}-cell${start}`)
 //   while (start < end) {
@@ -84,29 +96,7 @@
 //     start += 1
 //   }
 // }
-//
-// // $('.row-container').on("click", "div", function() {
-// //   if ($(this).attr('class').includes('zero')) {
-// //     let thisRowNum = $(this).attr('id')[3]
-// //     let thisText = $(this).text()
-// //     Object.keys(myObj).forEach(function(key) {
-// //     if (myObj.name == thisText) {
-// //       myObj.splice(myObj.indexOf(this), 1)
-// //     }
-// //   })
-// //     thisRow = document.querySelectorAll(`[id*=row${thisRowNum}`)
-// //
-// //     thisRow.forEach(elem => {
-// //       elem.remove()
-// //     })
-// //
-// //   }
-// // })
-//
-//
-//
 // function clearBoard(){
 //   $('.row-container').empty()
-//
-//     main()
+//     main(myObj)
 // }

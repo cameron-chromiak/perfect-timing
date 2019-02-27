@@ -52,7 +52,7 @@
 }
 </style>
 <a href="/scheduele/dashboard"><button id="back-save" class="btn btn-sm btn-primary">Back and Save</button></a>
-<h5>Ding. Dong.</h5>
+<h5>Use our <strong><a href="/about">SchedueleBuilder</a></strong>&trade;, and everyone will be on time</h5>
 <hr>
 <div class="scheduele-container text-center" id="scheduele-container">
 <div class="constant-headers" id="constant-headers">
@@ -89,13 +89,11 @@
 
 
 
-  <form action="/scheduele/pushObject" method="POST">
+<form action="/scheduele/pushObject" method="POST">
 <div class="row">
-  <div class="col-md-8">
+  <div class="col-sm-12 col-md-8 offset-md-2">
     <h5>Name</h5>
     <input type="text" id="new-name" name="name" class="d-inline">
-  </div>
-  <div class="col-md-3">
     <h5>Start</h5>
       <select id="time-start"name="start">
         <option value="1">8</option>
@@ -116,8 +114,6 @@
         <option value="16">11</option>
         <option value="17">12</option>
       </select>
-  </div>
-  <div class="col-md-3">
     <h5>End</h5>
       <select id="time-end" name="end">
         <option value="1">8</option>
@@ -139,7 +135,8 @@
         <option value="17">12</option>
         <option value="18">1</option>
       </select>
-  </div>
+
+</div>
 </div>
 <div class="row">
   <div class="col-md-6">
@@ -152,8 +149,8 @@
 <button type="submit"class="btn btn-success mt-2" id="save-btn" name="button">Save</button>
 <button type="submit"class="btn btn-danger mt-2" id="delete-btn" name="button">Delete</button>
 
-</div>
 
+<hr>
 <script type="text/javascript">
 let rowCount = 1
 let myObj = []

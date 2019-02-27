@@ -1,4 +1,23 @@
+.hero-btn{
+  background: white;
+}
+.hero-action{
+  align-self: center;
+}
+.hero-text{
+  padding-top: 2em;
+  padding-left: 3em;
+  color: white;
+}
+.hero{
+  height: 100vh;
+  background-image: url('/images/time.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
 
+}
 .form-control{
   max-width: 200px;
 }
@@ -15,6 +34,7 @@
 .image-container{
 height: 30vw;
 }
+
 li{
   list-style: none;
 }

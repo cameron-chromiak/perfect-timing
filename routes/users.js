@@ -8,8 +8,8 @@ const {ensureAuthenticated} = require('../helpers/auth')
 const router = express.Router()
 
 // Load User Model
-require('../models/User');
-const User = mongoose.model('users');
+//require('../models/User');
+const User = require('../models/User')//ongoose.model('users');
 
 router.get('/login', (req, res) => {
   res.render('users/login')

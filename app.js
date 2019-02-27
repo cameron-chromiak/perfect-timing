@@ -8,6 +8,9 @@ var handlebars = require('handlebars');
 var flash = require('req-flash');
 
 handlebars.registerHelper('moment', require('helper-moment'));
+handlebars.registerHelper('json', function(context){
+  return JSON.stringify(context)
+})
 const app = express()
 
 //connect to mongoose

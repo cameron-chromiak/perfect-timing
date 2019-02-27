@@ -5,12 +5,12 @@ const bcrypt = require('bcryptjs');
 const {ensureAuthenticated} = require('../helpers/auth')
 const router = express.Router()
 
-require('../models/dayScheduele');
-const DaySchema = mongoose.model('day');
+//require('../models/dayScheduele');
+const DaySchema = require('../models/dayScheduele');//mongoose.model('day');
 
 
 router.post('/pushObject', (req, res)=>{
-  console.log(req.body)
+  console.log('pushObject', req.body)
   let newName = {
     name: req.body.name,
     start: req.body.start,
@@ -38,10 +38,13 @@ router.post('/newDay', (req, res)=>{ //create new day
 
 
 router.get('/day/:id',ensureAuthenticated,(req,res)=>{ //show day
-  res.render('scheduele/builder')
   DaySchema.findOne({
     _id: req.params.id
-    }).catch(function(err){
+  }).then(theDay=>{
+    let name = theDay.name
+    console.log('theDay',theDay, name)
+    res.render('scheduele/builder', {myObj2:name})
+  }).catch(function(err){
     console.log(err);
   })
 })
@@ -50,7 +53,7 @@ router.get('/day/:id',ensureAuthenticated,(req,res)=>{ //show day
 router.post('/day/:id',ensureAuthenticated,(req,res)=>{ //save and update day
   console.log('hopefully',req.params,req.body)
   DaySchema.findOne({_id:req.params.id}).then(day=>{
-    day.name = req.body
+    day.name = JSON.parse(req.body.data)
     day.save(function(err,day){
       if(!err){
         console.log("from router.post /day:id", day)
@@ -62,14 +65,16 @@ router.post('/day/:id',ensureAuthenticated,(req,res)=>{ //save and update day
 //dashboard
 router.get('/dashboard', ensureAuthenticated, (req,res, next)=>{
   let errors = []
-    DaySchema.find({user: req.user.userId}).then(days =>{
+    // console.log(req.user, req.user._id)
+    //{userId:req.user._id}
+    DaySchema.find({userId:req.user._id}).then(days =>{
       if(days.length > 0){
         res.render('scheduele/dashboard', {'stats': days})
       }else{
         errors.push({text: "You do not have any schedules"})
         res.render('scheduele/dashboard', {err: errors })
-      }
-    })
+    }
+  })
 })
 
 router.get('/build', ensureAuthenticated, (req, res, next)=>{

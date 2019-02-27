@@ -1,3 +1,4 @@
+<!--
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,8 +10,9 @@
     crossorigin="anonymous">
   <title>Document</title>
 </head>
-<body>
 
+<body>
+-->
 <style media="screen">
 .row-container{
   white-space: nowrap;
@@ -48,10 +50,8 @@
     width: 75px;
     padding-left: 10px;
 }
-
-
 </style>
-<!-- <a href="/scheduele/dashboard"><button type="button" id="save-btn" class="btn btn-primary"name="button">Back</button></a> -->
+
 <h5>Ding. Dong.</h5>
 <hr>
 <div class="scheduele-container text-center" id="scheduele-container">
@@ -152,16 +152,14 @@
 <button type="submit"class="btn btn-success mt-2" id="save-btn" name="button">Save</button>
 <button type="submit"class="btn btn-danger mt-2" id="delete-btn" name="button">Delete</button>
 
-<!-- <form class="" action="/scheduele/save" method="post">
-  <button type="submit" method='POST'class="btn btn-success mt-2" name="button">Save</button>
-</form> -->
 </div>
 
 <script type="text/javascript">
 let rowCount = 1
 let myObj = []
+var myObj2 = JSON.parse('{{{json myObj2}}}')
 
-
+console.log(myObj2)
 let addBtn = document.getElementById('add-btn')
 let saveBtn = document.getElementById('save-btn')
 let dltBtn = document.getElementById('delete-btn')
@@ -169,6 +167,11 @@ let dltBtn = document.getElementById('delete-btn')
 addBtn.addEventListener('click', createNewObj)
 saveBtn.addEventListener('click', saveObj)
 saveBtn.addEventListener('click', deleteObj)
+
+$('body').ready(function(){
+  main(myObj2)
+})
+
 
 function createNewObj(){
   let startTime = document.getElementById('time-start').value
@@ -181,7 +184,7 @@ function createNewObj(){
 }
 
 function saveObj(){
-  $.post('', {myObj:myObj}, function(res){
+  $.post('', {data:JSON.stringify(myObj)}, function(res){
     // console.log(res);
 
   })
@@ -193,8 +196,8 @@ function deleteObj(){
   // })
 }
 
-function main() {
-  myObj.forEach(function(person) {
+function main(obj) {
+  obj.forEach(function(person) {
 
     jQuery('<div/>', {
       id: `row-${rowCount}`,
@@ -256,7 +259,7 @@ function changeCellColor(start, end) {
 function clearBoard(){
   $('.row-container').empty()
 
-    main()
+    main(obj)
 }
 
 

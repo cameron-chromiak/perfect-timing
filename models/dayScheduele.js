@@ -6,7 +6,9 @@ const Schema = mongoose.Schema;
 const DaySchema = new Schema({
   date: {type: Date},
   name: Array,
-  userId: {type:Schema.Types.ObjectId, ref:"users"}
+  userId: {type:Schema.Types.ObjectId, ref:"User"}
 })
 
-mongoose.model('day', DaySchema)
+const Day = mongoose.model('Day', DaySchema)
+
+module.exports = Day;

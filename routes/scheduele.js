@@ -54,7 +54,6 @@ router.post('/day/:id',ensureAuthenticated,(req,res)=>{ //save and update day
     day.save(function(err,day){
       if(!err){
         console.log("from router.post /day:id", day)
-
       }
     })
   })
@@ -63,7 +62,7 @@ router.post('/day/:id',ensureAuthenticated,(req,res)=>{ //save and update day
 //dashboard
 router.get('/dashboard', ensureAuthenticated, (req,res, next)=>{
   let errors = []
-    DaySchema.find().then(days =>{
+    DaySchema.find({user: req.user.userId}).then(days =>{
       if(days.length > 0){
         res.render('scheduele/dashboard', {'stats': days})
       }else{

@@ -1,3 +1,9 @@
+.mt-max{
+  margin-top: 5em;
+}
+.landing-about{
+  min-height: 70vh;
+}
 .hero-btn{
   background: white;
 }

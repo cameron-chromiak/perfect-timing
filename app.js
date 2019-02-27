@@ -4,8 +4,9 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const session = require('express-session');
-var handlebars = require('handlebars');
-var flash = require('req-flash');
+const handlebars = require('handlebars');
+const flash = require('connect-flash');
+
 
 handlebars.registerHelper('moment', require('helper-moment'));
 handlebars.registerHelper('json', function(context){
@@ -38,23 +39,32 @@ app.get('/', (req, res) =>{
 app.get('/about', (req, res) =>{
   res.render('about')
 })
+
+
 // Express session midleware
 app.use(session({
   secret: 'secret',
   resave: true,
   saveUninitialized: true
 }));
+//Passport
 
-//req-flash
-app.use(flash());
-flash({ locals: 'flash' })
-//passport middleware
+//Passport
+require('./config/passport')(passport)
 app.use(passport.initialize());
 app.use(passport.session());
 
-//detect if user is logged in thne display menu items
+//connect-flash
+app.use(flash())
+
+
+//GLOBALS
 app.use(function (req, res, next){
+  //is user logged in to display
   res.locals.user = req.user || null
+  //flash()
+  res.locals.succes_msg = req.flash('succes_msg')
+  res.locals.error = req.flash('error_msg')
   next()
 })
 
@@ -65,8 +75,6 @@ const scheduele = require('./routes/scheduele')
 app.use('/users', users)
 app.use('/scheduele', scheduele)
 
-//Passport
-require('./config/passport')(passport)
 
 const port = 4000
 

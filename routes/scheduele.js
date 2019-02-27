@@ -50,6 +50,7 @@ router.get('/day/:id',ensureAuthenticated,(req,res)=>{ //show day
 })
 
 
+
 router.post('/day/:id',ensureAuthenticated,(req,res)=>{ //save and update day
   console.log('hopefully',req.params,req.body)
   DaySchema.findOne({_id:req.params.id}).then(day=>{
@@ -59,6 +60,14 @@ router.post('/day/:id',ensureAuthenticated,(req,res)=>{ //save and update day
         console.log("from router.post /day:id", day)
       }
     })
+  })
+})
+
+
+router.delete('/day/:id',ensureAuthenticated,(req,res)=>{ //save and update day
+  console.log('delete',req.params,req.body)
+  DaySchema.deleteOne({_id:req.params.id}).then(day=>{
+    res.json({deletedTheBastard:true})
   })
 })
 

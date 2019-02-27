@@ -51,7 +51,7 @@
     padding-left: 10px;
 }
 </style>
-
+<a href="/scheduele/dashboard"><button id="back-save" class="btn btn-sm btn-primary">Back and Save</button></a>
 <h5>Ding. Dong.</h5>
 <hr>
 <div class="scheduele-container text-center" id="scheduele-container">
@@ -164,9 +164,12 @@ console.log(myObj2)
 let addBtn = document.getElementById('add-btn')
 let saveBtn = document.getElementById('save-btn')
 let dltBtn = document.getElementById('delete-btn')
+let backSave = document.getElementById('back-save')
+
 addBtn.addEventListener('click', createNewObj)
 saveBtn.addEventListener('click', saveObj)
-saveBtn.addEventListener('click', deleteObj)
+backSave.addEventListener('click', saveObj)
+dltBtn.addEventListener('click', deleteObj)
 
 
 $('body').ready(function(){
@@ -186,10 +189,16 @@ function saveObj(){
     // console.log(res);
   })
 }
-function deleteObj(){
-  // $.post('', {myObj:myObj}, function(res){
-  //
-  // })
+function deleteObj(e){
+  e.preventDefault()
+  $.ajax({
+    url: '',
+    type: 'DELETE',
+    success: function(e){
+      console.log(e)
+      window.location.pathname = '/scheduele/dashboard'
+    }
+  })
 }
 function main(obj) {
   obj.forEach(function(person) {
@@ -201,8 +210,8 @@ function main(obj) {
     rowCount += 1
   })
 }
+
 function addHourDivs(rowCount, person) {
-  //+5 to account for offset
   let start = Number(person.start)
   let end = Number(person.end)
   let rowDivs

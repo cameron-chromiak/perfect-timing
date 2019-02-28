@@ -8,6 +8,14 @@ const router = express.Router()
 //require('../models/dayScheduele');
 const DaySchema = require('../models/dayScheduele');//mongoose.model('day');
 
+//
+// router.post('/search', (req, res)=>{
+//   console.log(
+//   DaySchema.find()
+//     .select('date')
+//     .populate()
+//   )
+// })
 
 router.post('/pushObject', (req, res)=>{
   console.log('pushObject', req.body)
@@ -22,7 +30,7 @@ router.post('/pushObject', (req, res)=>{
 })
 
 router.post('/newDay', (req, res)=>{ //create new day
-      console.log(req.body,)
+      // console.log(req.body,)
         const newDay = new DaySchema({
         date: req.body.date,
         userId: req.user._id //add use to day - must be logged in
@@ -65,7 +73,7 @@ router.post('/day/:id',ensureAuthenticated,(req,res)=>{ //save and update day
 
 
 router.delete('/day/:id',ensureAuthenticated,(req,res)=>{ //save and update day
-  console.log('delete',req.params,req.body)
+  // console.log('delete',req.params,req.body)
   DaySchema.deleteOne({_id:req.params.id}).then(day=>{
     res.json({deletedTheBastard:true})
   })
@@ -76,7 +84,7 @@ router.get('/dashboard', ensureAuthenticated, (req,res, next)=>{
   let errors = []
     // console.log(req.user, req.user._id)
     //{userId:req.user._id}
-    DaySchema.find({userId:req.user._id}).then(days =>{
+    DaySchema.find({userId:req.user._id}).sort({date: -1}).then(days =>{
       if(days.length > 0){
         res.render('scheduele/dashboard', {'stats': days})
       }else{

@@ -7,9 +7,10 @@
   <title>Document</title>
 </head>
 <body>
-  <div class="row ml-2 mt-5">
+  <div class="row ml-4 mt-max">
     <h3>Welcome to your dashboard</h3>
-    <br>
+  </div>
+  <div class="row ml-4">
     <small>{{user.email}}</small>
     <small>Create a new scheduele or see the ones you've made.</small>
   </div>
@@ -23,16 +24,16 @@
           </form>
       </div>
       <div class="col">
-            <form class="" action="" method="post">
+            <!-- <form action="/scheduele/search" method="post">
               <h5>Search</h5>
-              <input type="text"class="form-control" name="" value="">
-              <button type="button" class="btn btn-primary m-2"name="button">Find</button>
-          </form>
+              <input type="text" class="form-control" name="query">
+              <button type="submit" class="btn btn-primary m-2"name="button">Find</button>
+          </form> -->
       </div>
       </div>
   </div>
     <hr>
-    <div class="container card-area">
+    <div class="container landing-about">
       {{#each err}}
         <div class="alert alert-danger">
           {{text}}

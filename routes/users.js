@@ -18,6 +18,29 @@ router.get('/register', (req, res) => {
   res.render('users/register')
 })
 
+//Account
+router.get('/account', (req,res) =>{
+  res.render('users/account')
+})
+//Update Password
+// router.post('/updatepassword', (req, res)=>{
+//   let errors = []
+//   if (req.body.password != req.body.password2) {
+//     errors.push({
+//       text: "Passwords do not match"
+//     })
+//   }
+//   if (errors.length > 0) {
+//     res.render('users/account', {
+//       errors: errors,
+//     })
+//   }
+//
+// })
+// router.post('/updateemail', (req, res)=>{
+//   res.send('x')
+// })
+
 //login
 router.post('/login', (req, res, next)=>{
   passport.authenticate('local', {

@@ -16,7 +16,7 @@ handlebars.registerHelper('json', function(context){
 const app = express()
 
 //connect to mongoose
-mongoose.connect('mongodb+srv://cameron:oN36XXvqn5B7PkXi@cluster0-j4x7e.mongodb.net/schedule?retryWrites=true', {
+mongoose.connect(`mongodb+srv://cameron:${process.env.password}@cluster0-j4x7e.mongodb.net/schedule?retryWrites=true`, {
   useNewUrlParser: true
 }).then(() => console.log('Mongo connected!'))
 .catch(err => console.log(err))

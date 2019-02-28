@@ -9,13 +9,14 @@ const flash = require('connect-flash');
 
 
 handlebars.registerHelper('moment', require('helper-moment'));
+
 handlebars.registerHelper('json', function(context){
   return JSON.stringify(context)
 })
 const app = express()
 
 //connect to mongoose
-mongoose.connect('mongodb://localhost/scheduele', {
+mongoose.connect('mongodb+srv://cameron:oN36XXvqn5B7PkXi@cluster0-j4x7e.mongodb.net/schedule?retryWrites=true', {
   useNewUrlParser: true
 }).then(() => console.log('Mongo connected!'))
 .catch(err => console.log(err))

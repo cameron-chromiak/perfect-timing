@@ -1,3 +1,12 @@
+
+.about-wrapper{
+  margin-top: 10vh;
+  padding-top: 2em;
+  padding-left: 5em;
+}
+.sign-in-wrapper{
+  height: 80vh;
+}
 .mt-max{
   margin-top: 5em;
 }
